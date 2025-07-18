@@ -45,7 +45,7 @@ if page == "Home":
 
     with col2: 
         st.subheader("Diabetes")
-        st.image("resized_image.png", use_container_width =True)
+        st.image("Images/resized_image.png", use_container_width =True)
         with st.expander("Know more"):
           st.write("Diabetes is a chronic metabolic disorder that occurs when the body is unable to properly regulate blood glucose (sugar) levels. It results either from insufficient insulin production by the pancreas or the body's inability to effectively use the insulin it produces. There are several types of diabetes, with Type 1 and Type 2 being the most common. If not managed properly, diabetes can lead to serious long-term health complications affecting the heart, kidneys, eyes, and nerves. While there is no permanent cure, it can be effectively managed through lifestyle changes, medication, and regular monitoring of blood sugar levels.")
 
@@ -84,7 +84,7 @@ if page == "Home":
 
     with col4:
         st.subheader("Heart Health")
-        st.image("resized_heart_image_344x289.jpg",use_container_width=True)
+        st.image("Images/resized_heart_image_344x289.jpg",use_container_width=True)
         with st.expander("Know more"):
             st.write("Heart health is essential for the proper functioning of the body, as the heart is responsible for pumping oxygen-rich blood to all organs and tissues. Maintaining good cardiovascular health supports energy levels, mental clarity, and the body’s ability to recover from illness or stress. It involves a combination of healthy lifestyle choices, such as eating nutrient-rich foods, staying physically active, managing stress, and getting regular medical check-ups. Factors like genetics, environment, and daily habits all influence heart health over time. Fostering heart health not only helps prevent life-threatening conditions but also contributes to a longer, more active, and fulfilling life..")
               
