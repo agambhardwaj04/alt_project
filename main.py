@@ -1,13 +1,14 @@
 import streamlit as st
 import joblib 
+import numpy as np
 
 
 
 #### Sidebar ####
 st.sidebar.header("Multi-Disease Predictor")
 st.sidebar.markdown("\n\n")
-st.sidebar.header("Navigation")
-st.sidebar.subheader("Please select the Disease you are concerned about")
+st.sidebar.header("🧭 Navigation")
+st.sidebar.subheader("Please select the Disease you are concerned about.")
 st.sidebar.markdown("\n\n")
 st.sidebar.markdown("\n\n")
 st.sidebar.markdown("\n\n")
@@ -15,9 +16,9 @@ st.sidebar.markdown("\n\n")
 #### ---- ####
 #### INTRODUCTION ####
 
-page = st.sidebar.selectbox("Sidebar Selectbox", ["Home","Parkinsons", "Diabetes", "Maternal Health","Heart Health","Conclusions"])
+page = st.sidebar.selectbox("Choose from Below 👇", ["🌐 Home","🧠 Parkinson's", "💉 Diabetes", "🤰 Maternal Health","🫀 Heart Health","📊 Conclusions"])
 
-if page == "Home":
+if page == "🌐 Home":
     st.title("Multi-Disease Predictor Prediction App")
     st.header("Indroduction")
     st.write("Welcome to the Multi-Disease Prediction System")
@@ -101,25 +102,68 @@ if page == "Home":
               st.write("* Pain in the neck, jaw, throat, upper back, or arms")
 
 
-if page == "Parkinsons":
+elif page == "🧠 Parkinson's":
     
-    st.write("Content for Page 1")
 
-elif page == "Diabetes":
+    st.title("🧠 Parkinson's Predictor ")
+    st.subheader("Please fill the values below from your Report")
+
+    with st.form("in"):
+        st.subheader("Input Values : ")
+
+        features = []
+        feature_names = [
+            "MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)", "MDVP:Jitter(Abs)","MDVP:RAP", "MDVP:PPQ", "Jitter:DDP", "MDVP:Shimmer", "MDVP:Shimmer(dB)",
+            "Shimmer:APQ3", "Shimmer:APQ5", "MDVP:APQ", "Shimmer:DDA", "NHR", "HNR",
+            "RPDE", "DFA", "spread1", "spread2", "D2", "PPE"
+        ] 
+
+        for name in feature_names:
+            val = st.number_input(name, min_value=-100.0, max_value=200.0000, value=0.00, step=0.1,format='%.6g')
+            features.append(val)
+
+        submitted = st.form_submit_button("Submit")
+
+        if submitted:
+          scaler = joblib.load("Models/parkinson_scaler.joblib")
+          model_parkinson = joblib.load("Models/parkinson.joblib")
+
+          # Inside your form submission
+          features_scaled = scaler.transform([features])
+          prediction = model_parkinson.predict(features_scaled)
+
+
+          if prediction[0] == 1:
+            st.markdown(
+              "<div style='color: white; background-color: red; padding: 8px; border-radius: 5px;'>"
+              "⚠️ <strong>Parkinson’s Detected</strong>, Please contact a Doctor"
+              "</div>",
+                unsafe_allow_html=True
+            )
+          else:
+            st.markdown(
+              "<div style='color: white; background-color: green; padding: 8px; border-radius: 5px;'>"
+              "✅ <strong>No Parkinson’s</strong>, but if you have symptoms, Please confirm with a Doctor"
+              "</div>",
+              unsafe_allow_html=True
+            )
+
+elif page == "💉 Diabetes":
     
-    st.write("Content for Page 2")
+    st.title("Diabetes Predictor")
+    st.subheader("Please fill the values below from your Report")
 
-elif page == "Maternal Health":
-    model_maternal = joblib.load('C:/Users/agamb/Desktop/Alt_Project/Models/model_boost.joblib')
+elif page == "🤰 Maternal Health":
+    model_maternal = joblib.load('./Models/model_boost.joblib')
+    st.title("Maternal Health Predictor")
+    st.subheader("Please fill the values below from your Report")
 
-
-    st.write("Content for Page 3")
-
-elif page == "Heart Health":
+elif page == "🫀 Heart Health":
     
-    st.write('Content foor Page 4')
+    st.title("Heart Health Predictor")
+    st.subheader("Please fill the values below from your Report")
 
-elif page == "Conclusions":
+elif page == "📊 Conclusions":
     
     st.write('Content foor Page 5')
 #### ---- ####
@@ -135,3 +179,8 @@ st.sidebar.markdown("\n\n")
 st.sidebar.markdown("\n\n")
 
 st.sidebar.subheader("Thanks for visiting HealthWise!❤️")
+#### ---- ####
+
+
+
+
