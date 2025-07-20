@@ -212,7 +212,7 @@ elif page == "🤰 Maternal Health":
 
         if submitted:
           scaler = joblib.load("Models/maternal_scaler.joblib")  
-          model = joblib.load("model_boost.joblib")
+          model = joblib.load("Models/maternal.joblib")
 
           
           X_input = scaler.transform([features])  
@@ -221,7 +221,28 @@ elif page == "🤰 Maternal Health":
 
 
           risk_map = {0: "High Risk", 1: "Low Risk", 2: "Mid Risk"}  
-          st.success(f"Predicted Risk Level: {risk_map.get(pred, 'Unknown')}")
+          if pred == 0:
+            st.markdown(
+              "<div style='color: white; background-color: red; padding: 8px; border-radius: 5px;'>"
+              "⚠️ <strong>High Risk Detected.</strong> Please contact a Doctor."
+              "</div>",
+              unsafe_allow_html=True
+            )
+          elif pred == 2:
+            st.markdown(
+              "<div style='color: black; background-color: yellow; padding: 8px; border-radius: 5px;'>"
+              "🧑‍⚕️<strong>Mid Risk Detected.</strong> Please monitor your health and consult a doctor if needed."
+              "</div>",
+              unsafe_allow_html=True
+            )
+          else:
+            st.markdown(
+              "<div style='color: white; background-color: green; padding: 8px; border-radius: 5px;'>"
+              "✅ <strong>No Risk Detected</strong>, but if you have symptoms, please confirm with a Doctor."
+              "</div>",
+              unsafe_allow_html=True
+            ) 
+
 
         
           
