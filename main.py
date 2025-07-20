@@ -1,6 +1,11 @@
 import streamlit as st
 import joblib 
 import numpy as np
+st.set_page_config(
+    page_title="Multi Disease Predictor",
+    page_icon="🩺",  
+    layout="wide"
+)
 
 def set_background_url(image_url):
     st.markdown(
@@ -20,7 +25,7 @@ def set_background_url(image_url):
 
 
 #### Sidebar ####
-st.sidebar.header("Multi-Disease Predictor")
+st.sidebar.header("⚖️ Multi-Disease Predictor")
 st.sidebar.markdown("\n\n")
 st.sidebar.header("🧭 Navigation")
 st.sidebar.subheader("Please select the Disease you are concerned about.")
