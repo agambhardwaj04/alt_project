@@ -149,21 +149,90 @@ elif page == "🧠 Parkinson's":
             )
 
 elif page == "💉 Diabetes":
-    
-    st.title("Diabetes Predictor")
+
+    st.title("💉 Diabetes Predictor")
     st.subheader("Please fill the values below from your Report")
+    
+
+    with st.form("in"):
+        st.subheader("Input Values : ")
+
+        features1 = []
+        feature_names1 = [
+            'Pregnancies','Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age'
+        ] 
+
+        for name in feature_names1:
+            val = st.number_input(name, min_value=0.0, max_value=541.0, value=0.00, step=1.0,format='%.3f')
+            features1.append(val)
+
+        submitted = st.form_submit_button("Submit")
+
+        if submitted:
+          scaler = joblib.load("Models/diabetes_scaler.joblib")
+          model_diabetes = joblib.load("Models\diabetes.joblib")
+
+          # Inside your form submission
+          features_scaled = scaler.transform([features1])
+          prediction = model_diabetes.predict(features_scaled)
+
+
+          if prediction[0] == 1:
+            st.markdown(
+              "<div style='color: white; background-color: red; padding: 8px; border-radius: 5px;'>"
+              "⚠️ <strong>You have Diabetes.</strong> Please contact a Doctor"
+              "</div>",
+                unsafe_allow_html=True
+            )
+          else:
+            st.markdown(
+              "<div style='color: white; background-color: green; padding: 8px; border-radius: 5px;'>"
+              "✅ <strong>No Diabetes detected</strong>, but if you have symptoms, Please confirm with a Doctor"
+              "</div>",
+              unsafe_allow_html=True
+            )
 
 elif page == "🤰 Maternal Health":
-    model_maternal = joblib.load('./Models/model_boost.joblib')
-    st.title("Maternal Health Predictor")
+    
+    st.title("🤰 Maternal Health Predictor")
     st.subheader("Please fill the values below from your Report")
+    with st.form("in"):
+        st.subheader("Input Values : ")
+
+        features = []
+        feature_names = [
+            'Age','SystolicBP','DiastolicBP','BS','BodyTemp','HeartRate'
+        ] 
+
+        for name in feature_names:
+            val = st.number_input(name, min_value=0.0, max_value=370.0, value=0.0, step=1.0,format='%.1f')
+            features.append(val)
+
+        submitted = st.form_submit_button("Submit")
+
+        if submitted:
+          scaler = joblib.load("Models/maternal_scaler.joblib")  
+          model = joblib.load("model_boost.joblib")
+
+          
+          X_input = scaler.transform([features])  
+
+          pred = model.predict(X_input)[0]
+
+
+          risk_map = {0: "High Risk", 1: "Low Risk", 2: "Mid Risk"}  
+          st.success(f"Predicted Risk Level: {risk_map.get(pred, 'Unknown')}")
+
+        
+          
+    
 
 elif page == "🫀 Heart Health":
     
     st.title("Heart Health Predictor")
     st.subheader("Please fill the values below from your Report")
 
-elif page == "📊 Conclusions":
+elif page == "📊Conclusions":
     
     st.write('Content foor Page 5')
 #### ---- ####
