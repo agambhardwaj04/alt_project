@@ -260,7 +260,7 @@ elif page == "🤰 Maternal Health":
 
 
 elif page == "🫀 Heart Health":
-    set_background_url('https://cdn.mos.cms.futurecdn.net/DVaxHzEPQr2JbMdiy4N2yU.jpg')
+    set_background_url('https://t3.ftcdn.net/jpg/15/58/90/42/360_F_1558904203_zER6SbU509l3MDaIjhEnYcUM2MAE6ysq.jpg')
     
     st.title(" Heart Health Predictor")
     st.subheader("Please fill the values below from your Report")
