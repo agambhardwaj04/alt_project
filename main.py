@@ -2,6 +2,21 @@ import streamlit as st
 import joblib 
 import numpy as np
 
+def set_background_url(image_url):
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("{image_url}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 
 
 #### Sidebar ####
@@ -104,7 +119,7 @@ if page == "🌐 Home":
 
 elif page == "🧠 Parkinson's":
     
-
+    set_background_url('https://images.unsplash.com/photo-1732454827988-95972d793f1b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZGFyayUyMGJyYWluJTIwcGFya2luc29uJTIwYmFja2dyb3VuZGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D')
     st.title("🧠 Parkinson's Predictor ")
     st.subheader("Please fill the values below from your Report")
 
@@ -149,7 +164,7 @@ elif page == "🧠 Parkinson's":
             )
 
 elif page == "💉 Diabetes":
-
+    set_background_url('https://www.diabetesqualified.com.au/wp-content/uploads/2025/02/blood-drop-in-a-dome-future-tech-style-GettyImages-1485107320.png')
     st.title("💉 Diabetes Predictor")
     st.subheader("Please fill the values below from your Report")
     
@@ -174,10 +189,10 @@ elif page == "💉 Diabetes":
 
           # Inside your form submission
           features_scaled = scaler.transform([features1])
-          prediction = model_diabetes.predict(features_scaled)
+          prediction1 = model_diabetes.predict(features_scaled)
 
 
-          if prediction[0] == 1:
+          if prediction1[0] == 1:
             st.markdown(
               "<div style='color: white; background-color: red; padding: 8px; border-radius: 5px;'>"
               "⚠️ <strong>You have Diabetes.</strong> Please contact a Doctor"
@@ -193,7 +208,7 @@ elif page == "💉 Diabetes":
             )
 
 elif page == "🤰 Maternal Health":
-    
+    set_background_url("https://images.unsplash.com/photo-1656267964814-88f33e184c5f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hdGVybmFsJTIwaGVhbHRoJTIwZGFyayUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D")
     st.title("🤰 Maternal Health Predictor")
     st.subheader("Please fill the values below from your Report")
     with st.form("in"):
@@ -244,14 +259,47 @@ elif page == "🤰 Maternal Health":
             ) 
 
 
-        
-          
-    
-
 elif page == "🫀 Heart Health":
+    set_background_url('https://cdn.mos.cms.futurecdn.net/DVaxHzEPQr2JbMdiy4N2yU.jpg')
     
-    st.title("Heart Health Predictor")
+    st.title(" Heart Health Predictor")
     st.subheader("Please fill the values below from your Report")
+    with st.form("in"):
+        st.subheader("Input Values : ")
+
+        features2 = []
+        feature_names2 = [
+            'age','sex','cp','trestbps','chol','fbs','restecg','thalach','exang','oldpeak','slope','ca','thal'
+        ]  
+
+        for name in feature_names2:
+            val = st.number_input(name, min_value=0.0, max_value=500.0, value=0.00, step=1.0,format='%.1f')
+            features2.append(val)
+
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+          scaler = joblib.load("Models/heart_scaler.joblib")
+          model_heart = joblib.load("Models/heart.joblib")
+
+          # Inside your form submission
+          features_scaled = scaler.transform([features2])
+          prediction1 = model_heart.predict(features_scaled)
+
+
+          if prediction1[0] == 1:
+            st.markdown(
+              "<div style='color: white; background-color: red; padding: 8px; border-radius: 5px;'>"
+              "⚠️ <strong>Your Heart Health is poor.</strong> Please contact a Doctor"
+              "</div>",
+                unsafe_allow_html=True
+            )
+          else:
+            st.markdown(
+              "<div style='color: white; background-color: green; padding: 8px; border-radius: 5px;'>"
+              "💓<strong>Healthy Heart Detected</strong>, but if you have symptoms, Please confirm with a Doctor"
+              "</div>",
+              unsafe_allow_html=True
+            )
 
 elif page == "📊Conclusions":
     
@@ -268,7 +316,7 @@ st.sidebar.markdown("\n\n")
 st.sidebar.markdown("\n\n")
 st.sidebar.markdown("\n\n")
 
-st.sidebar.subheader("Thanks for visiting HealthWise!❤️")
+st.sidebar.subheader("Thanks for trusting and visiting HealthWise!❤️")
 #### ---- ####
 
 
