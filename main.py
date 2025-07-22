@@ -423,7 +423,7 @@ elif page == "📊 Conclusions":
             st.subheader("Factors affecting the Outcome for Diabetes")
             st.image('Images/subplot_diabetes.png',caption="Factors affecting the Outcome for Diabetes")
             st.subheader("Confusion Matrix")
-            st.image("Images\cm_diabetes.png", caption="Confusion Matrix")
+            st.image("Images/cm_diabetes.png", caption="Confusion Matrix")
 
         with st.expander("🧠 Observations & Insights"):
           st.markdown("""
@@ -473,7 +473,7 @@ elif page == "📊 Conclusions":
             st.subheader("*Systolic BP, Diastolic BP, Blood Sugar* are the factors affecting maternal health the most")
             st.image('Images/subplot_maternal.png',caption="*Systolic BP, Diastolic BP, Blood Sugar* are the factors affecting maternal health the most")
             st.subheader("Confusion Matrix")
-            st.image("Images\cm_maternal.png", caption="Confusion Matrix")
+            st.image("Images/cm_maternal.png", caption="Confusion Matrix")
 
       with st.expander("🧠 Observations & Insights"):
         st.markdown("""
@@ -525,9 +525,9 @@ elif page == "📊 Conclusions":
         with st.expander("📊 Confusion Matrix and Visuals"):
             st.header("*Important Features Impacting Prediction*")
             st.subheader("Features that affects target[1]")
-            st.image("Images\subplot_heart.png", caption="Features affecting heart health the most")
+            st.image("Images/subplot_heart.png", caption="Features affecting heart health the most")
             st.subheader("Features that affects target[0]")
-            st.image("Images\subplot_heart_negative.png", caption="Features affecting heart health the least")
+            st.image("Images/subplot_heart_negative.png", caption="Features affecting heart health the least")
             st.subheader("Confusion Matrix")
             st.image("Images/cm_heart.png", caption="Confusion Matrix")
 
