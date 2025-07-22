@@ -433,10 +433,10 @@ elif page == "📊 Conclusions":
 
         """)
 
-with tab3:
-    st.header("🤰 Maternal Health Prediction")
+    with tab3:
+      st.header("🤰 Maternal Health Prediction")
 
-    with st.expander("🔍 Model Details"):
+      with st.expander("🔍 Model Details"):
         
         st.markdown("""
        ### 🧪 **Model Summary**
@@ -452,7 +452,7 @@ with tab3:
          - `HeartRate`
         """)
 
-    with st.expander("📊 Model Performance Summary"):
+      with st.expander("📊 Model Performance Summary"):
         st.markdown("""
         ### ✅ **Performance Overview**
         - **Accuracy:** `84.2%`
@@ -469,13 +469,13 @@ with tab3:
           - 🟡 **Mid Risk:** `0.85`  
           - 🔴 **High Risk:** `0.83`
         """)
-    with st.expander("📊 Confusion Matrix and Visuals"):
+      with st.expander("📊 Confusion Matrix and Visuals"):
             st.subheader("*Systolic BP, Diastolic BP, Blood Sugar* are the factors affecting maternal health the most")
             st.image('Images/subplot_maternal.png',caption="*Systolic BP, Diastolic BP, Blood Sugar* are the factors affecting maternal health the most")
             st.subheader("Confusion Matrix")
             st.image("Images\cm_maternal.png", caption="Confusion Matrix")
 
-    with st.expander("🧠 Observations & Insights"):
+      with st.expander("🧠 Observations & Insights"):
         st.markdown("""
         -  The model performs **very well across all risk levels**, especially in **recall**.
         - Low-risk patients are identified very accurately (87% recall).
