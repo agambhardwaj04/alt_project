@@ -190,7 +190,7 @@ elif page == "💉 Diabetes":
 
         if submitted:
           scaler = joblib.load("Models/diabetes_scaler.joblib")
-          model_diabetes = joblib.load("Models\diabetes.joblib")
+          model_diabetes = joblib.load("Models/diabetes.joblib")
 
           # Inside your form submission
           features_scaled = scaler.transform([features1])
