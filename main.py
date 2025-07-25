@@ -452,7 +452,7 @@ elif page == "📊 Conclusions":
          - `HeartRate`
         """)
 
-      with st.expander("📊 Model Performance Summary"):
+      with st.expander("📈 Model Performance Summary"):
         st.markdown("""
         ### ✅ **Performance Overview**
         - **Accuracy:** `84.2%`
@@ -507,7 +507,7 @@ elif page == "📊 Conclusions":
           - `Thal`          
         """)
 
-        with st.expander("📊 Model Performance Summary"):
+        with st.expander("📈 Model Performance Summary"):
           st.markdown("""
         ### ✅ **Performance Overview**
         - **Accuracy:** `88.52%`
